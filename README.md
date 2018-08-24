@@ -1,5 +1,5 @@
-## Projeto simples para demonstrar o uso do Spring Boot 2.0 e Angular6
+# Spring Boot 2.0 e Angular6
 
-# Aplicação para controle financeiro pessoal
+## Aplicação para controle financeiro pessoal
 
-Permite realizar laçamento de receita e despesa separando por categoria.
+Aplicação simples que permite realizar laçamento de receita e despesa separando por categoria, para fazer um controle pessoal financeiro básico.
