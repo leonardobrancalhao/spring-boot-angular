@@ -2,14 +2,20 @@ package com.leonardobrancalhao.financeiro.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.leonardobrancalhao.financeiro.model.Categoria;
 import com.leonardobrancalhao.financeiro.repository.CategoriaRepository;
 
+@Service
 public class CategoriaService {
+	
+	@Autowired
+	private CategoriaRepository repository;
 
 	public List<Categoria> listar() {
-		CategoriaRepository repository = new CategoriaRepository();
-		return repository.listar();
+		return repository.findAll();
 	}
 
 	public Categoria listar(Integer id) {
@@ -17,15 +23,7 @@ public class CategoriaService {
 			return null;
 		}
 
-		List<Categoria> lista = listar();
-
-		for (Categoria categoria : lista) {
-			if (categoria.getId().equals(id)) {
-				return categoria;
-			}
-		}
-
-		return null;
+		return repository.findById(id).get();
 	}
 
 	public void salvar(Categoria categoria) {
@@ -33,26 +31,11 @@ public class CategoriaService {
 			return;
 		}
 
-		if (categoria.getId() == null || categoria.getNome() == null) {
+		if (categoria.getNome() == null) {
 			return;
 		}
 
-		List<Categoria> lista = listar();
-
-		boolean salvar = true;
-		for (Categoria item : lista) {
-			if (item.getId().equals(categoria.getId())) {
-				salvar = false;
-				System.out.println("Não cadastrou categoria, já exite o id: " + categoria.getId());
-				break;
-			}
-		}
-
-		if (salvar) {
-			System.out.println("Categoria cadastrada com sucesso");
-			lista.add(categoria);
-		}
-
+		repository.save(categoria);
 	}
 
 }
