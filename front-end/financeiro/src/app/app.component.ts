@@ -9,17 +9,17 @@ import { Component } from '@angular/core';
 export class AppComponent {
 
   constructor(private http: HttpClient) {
-    this.http.get('http://localhost:8080/categorias').subscribe(
-      (retorno) => {
-        // aqui temos todos os retornos da api
-        console.log('foi', retorno);
+    // this.http.get('http://localhost:8080/categorias').subscribe(
+    //   (retorno) => {
+    //     // aqui temos todos os retornos da api
+    //     console.log('foi', retorno);
 
-      },
-      (erro) => {
-        console.log('Falha', erro);
-        // tratar o erro...
-      }
-    );
+    //   },
+    //   (erro) => {
+    //     console.log('Falha', erro);
+    //     // tratar o erro...
+    //   }
+    // );
   }
 
 }
