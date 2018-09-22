@@ -33,8 +33,16 @@ public class CategoriaController {
 	}
 
 	@PostMapping
+	@CrossOrigin("*")
 	public ResponseEntity<?> salvar(@RequestBody Categoria categoria) {
 		service.salvar(categoria);
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
+	@PostMapping(path = "/remover")
+	@CrossOrigin("*")
+	public ResponseEntity<?> remover(@RequestBody Integer id) {
+		service.remover(id);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 

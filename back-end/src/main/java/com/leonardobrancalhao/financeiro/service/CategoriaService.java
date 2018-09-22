@@ -37,5 +37,13 @@ public class CategoriaService {
 
 		repository.save(categoria);
 	}
+	
+	public void remover(Integer id) {
+		if(id == null || id <= 0) {
+			return;
+		}
+		
+		repository.deleteById(id);
+	}
 
 }

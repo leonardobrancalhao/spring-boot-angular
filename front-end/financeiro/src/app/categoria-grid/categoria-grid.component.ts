@@ -1,6 +1,6 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { CategoriaService } from '../service/categoria.service';
+import { Component, OnInit } from '@angular/core';
 import { Categoria } from '../model/categoria';
+import { CategoriaService } from '../service/categoria.service';
 
 declare var $: any;
 
@@ -12,6 +12,7 @@ declare var $: any;
 export class CategoriaGridComponent implements OnInit {
 
   categorias: Array<Categoria>;
+  categoriaSelecionada: Categoria;
 
   constructor(private service: CategoriaService) { }
 
@@ -27,6 +28,22 @@ export class CategoriaGridComponent implements OnInit {
   }
 
   nova() {
+    this.categoriaSelecionada = new Categoria();
+    $('#modalNova').modal('show');
+  }
+
+  onSalvarCategoria(event) {
+    $('#modalNova').modal('hide');
+    this.ngOnInit();
+  }
+
+  onRemoverCategoria(event) {
+    $('#modalNova').modal('hide');
+    this.ngOnInit();
+  }
+
+  editar(obj: Categoria) {
+    this.categoriaSelecionada = obj;
     $('#modalNova').modal('show');
   }
 
