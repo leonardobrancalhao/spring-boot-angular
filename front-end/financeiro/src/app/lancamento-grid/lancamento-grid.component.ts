@@ -30,4 +30,9 @@ export class LancamentoGridComponent implements OnInit {
     $('#modalNovo').modal('show');
   }
 
+  onSalvarLancamento(event) {
+    $('#modalNovo').modal('hide');
+    this.ngOnInit();
+  }
+
 }

@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Lancamento } from '../model/lancamento';
+import { Categoria } from '../model/categoria';
+import { Lancamento, TipoLancamento } from '../model/lancamento';
+import { CategoriaService } from '../service/categoria.service';
 import { LancamentoService } from '../service/lancamento.service';
 
 @Component({
@@ -12,6 +14,8 @@ export class LancamentoFormComponent implements OnInit, OnChanges {
 
   @Input() lancamento: Lancamento = new Lancamento();
 
+  @Input() newPage = false;
+
   // tslint:disable-next-line:no-output-on-prefix
   @Output() onSalvar: EventEmitter<any> = new EventEmitter();
 
@@ -19,10 +23,12 @@ export class LancamentoFormComponent implements OnInit, OnChanges {
   @Output() onRemover: EventEmitter<any> = new EventEmitter();
 
   form: FormGroup;
+  listaCategoria: Categoria[];
 
   constructor(
     private fb: FormBuilder,
-    private service: LancamentoService) {
+    private service: LancamentoService,
+    private categoriaService: CategoriaService) {
 
     this.form = fb.group({
       id: [''],
@@ -69,6 +75,17 @@ export class LancamentoFormComponent implements OnInit, OnChanges {
       },
       (erro) => {
         console.log('Deu errado', erro);
+      }
+    );
+  }
+
+  buscarCategoria(event) {
+    this.categoriaService.listarPorNome(event.query).subscribe(
+      (response) => {
+        this.listaCategoria = response;
+      },
+      (erro) => {
+        console.log('Falha ao listar categoria', erro);
       }
     );
   }

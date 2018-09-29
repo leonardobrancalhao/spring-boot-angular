@@ -1,5 +1,6 @@
 package com.leonardobrancalhao.financeiro.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,16 @@ public class CategoriaService {
 		}
 		
 		repository.deleteById(id);
+	}
+	
+	public List<Categoria> filtrar(String nome) {
+		List<Categoria> lista = new ArrayList<>();
+		
+		if(nome != null && nome.trim().length() > 0) {
+			lista = repository.findByNomeContainingIgnoreCaseOrderByNome(nome);
+		}
+		
+		return lista;
 	}
 
 }

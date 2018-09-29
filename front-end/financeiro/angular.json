@@ -26,7 +26,10 @@
               "src/styles.css",
               "src/assets/template/vendor/bootstrap/css/bootstrap.min.css",
               "src/assets/template/vendor/fontawesome-free/css/all.min.css",
-              "src/assets/template/css/sb-admin.css"
+              "src/assets/template/css/sb-admin.css",
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/primeng/resources/themes/nova-light/theme.css",
+              "node_modules/primeng/resources/primeng.min.css"
             ],
             "scripts": [
               "src/assets/template/vendor/jquery/jquery.min.js",

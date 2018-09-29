@@ -23,6 +23,7 @@
                 <th rowspan="1" colspan="1">Valor</th>
                 <th rowspan="1" colspan="1">Data</th>
                 <th rowspan="1" colspan="1">Nome</th>
+                <th rowspan="1" colspan="1">Categoria</th>
               </tr>
             </thead>
 
@@ -30,9 +31,10 @@
 
               <tr role="row" class="even" *ngFor="let lancamento of lancamentos">
                 <td>{{lancamento.tipo}}</td>
-                <td>{{lancamento.valor}}</td>
-                <td>{{lancamento.data}}</td>
+                <td>{{lancamento.valor | currency: 'BRL'}}</td>
+                <td>{{lancamento.data | date: 'dd/MM/yyyy'}}</td>
                 <td>{{lancamento.nome}}</td>
+                <td>{{lancamento.categoria.nome}}</td>
               </tr>
 
             </tbody>
@@ -57,7 +59,7 @@
       </div>
 
       <div class="modal-body">
-        <app-lancamento-form></app-lancamento-form>
+        <app-lancamento-form (onSalvar)="onSalvarLancamento($event);"></app-lancamento-form>
       </div>
 
       <div class="modal-footer">

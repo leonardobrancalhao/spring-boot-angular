@@ -9,7 +9,8 @@ import com.leonardobrancalhao.financeiro.model.Categoria;
 
 @Repository
 public interface CategoriaRepository extends JpaRepository<Categoria, Integer> {
-	
-	List<Categoria> findByNomeLikeOrderByNome(String nome);
+
+	// select * from categoria where nome like '%parametro%' order by nome
+	List<Categoria> findByNomeContainingIgnoreCaseOrderByNome(String nome);
 
 }
