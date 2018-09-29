@@ -7,13 +7,17 @@ import { CategoriaFormComponent } from './categoria-form/categoria-form.componen
 import { CategoriaGridComponent } from './categoria-grid/categoria-grid.component';
 import { RotasRoutingModule } from './rotas/rotas-routing.module';
 import { TemplateComponent } from './template/template.component';
+import { LancamentoGridComponent } from './lancamento-grid/lancamento-grid.component';
+import { LancamentoFormComponent } from './lancamento-form/lancamento-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TemplateComponent,
     CategoriaGridComponent,
-    CategoriaFormComponent
+    CategoriaFormComponent,
+    LancamentoGridComponent,
+    LancamentoFormComponent
   ],
   imports: [
     BrowserModule,

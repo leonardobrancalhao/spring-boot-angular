@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CategoriaGridComponent } from '../categoria-grid/categoria-grid.component';
+import { LancamentoGridComponent } from '../lancamento-grid/lancamento-grid.component';
 import { TemplateComponent } from '../template/template.component';
 
 const routes: Routes = [
@@ -16,6 +17,10 @@ const routes: Routes = [
       {
         path: 'categorias',
         component: CategoriaGridComponent
+      },
+      {
+        path: 'lancamentos',
+        component: LancamentoGridComponent
       }
     ]
   },

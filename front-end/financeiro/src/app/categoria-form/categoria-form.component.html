@@ -19,7 +19,7 @@
     <i class="fas fa-save"></i> Salvar
   </button>
 
-  <button *ngIf="categoria.id > 0" type="button" style="float: right;" class="btn btn-sm btn-danger" (click)="remover();">
+  <button *ngIf="categoria && categoria.id" type="button" style="float: right;" class="btn btn-sm btn-danger" (click)="remover();">
     <i class="fas fa-trash"></i> Remover
   </button>
 

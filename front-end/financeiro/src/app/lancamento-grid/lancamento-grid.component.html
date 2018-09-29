@@ -1,0 +1,69 @@
+<div class="card mb-3">
+
+  <div class="card-header">
+    <i class="fas fa-table"></i> Lançamentos
+
+    <button class="btn btn-sm btn-primary" style="float: right;" (click)="novo();">
+      <i class="fas fa-plus"></i> Novo
+    </button>
+
+  </div>
+
+  <div class="card-body">
+    <div class="table-responsive">
+
+      <div class="row">
+        <div class="col-sm-12">
+          <table class="table table-bordered dataTable" id="dataTable" cellspacing="0" role="grid" aria-describedby="dataTable_info"
+            style="width: 100%;">
+
+            <thead>
+              <tr role="row">
+                <th rowspan="1" colspan="1">Tipo</th>
+                <th rowspan="1" colspan="1">Valor</th>
+                <th rowspan="1" colspan="1">Data</th>
+                <th rowspan="1" colspan="1">Nome</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <tr role="row" class="even" *ngFor="let lancamento of lancamentos">
+                <td>{{lancamento.tipo}}</td>
+                <td>{{lancamento.valor}}</td>
+                <td>{{lancamento.data}}</td>
+                <td>{{lancamento.nome}}</td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+</div>
+
+<!-- modal -->
+<div class="modal fade" id="modalNovo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Lançamento</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <app-lancamento-form></app-lancamento-form>
+      </div>
+
+      <div class="modal-footer">
+
+      </div>
+
+    </div>
+  </div>
+</div>

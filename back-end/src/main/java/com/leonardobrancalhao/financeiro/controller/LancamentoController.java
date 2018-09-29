@@ -3,6 +3,7 @@ package com.leonardobrancalhao.financeiro.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,7 +15,8 @@ import com.leonardobrancalhao.financeiro.model.Lancamento;
 import com.leonardobrancalhao.financeiro.service.LancamentoService;
 
 @RestController
-@RequestMapping(path = "lancamento")
+@RequestMapping(path = "lancamentos")
+@CrossOrigin("*")
 public class LancamentoController {
 
 	@Autowired
