@@ -14,8 +14,7 @@
 
       <div class="row">
         <div class="col-sm-12">
-          <table class="table table-bordered dataTable" id="dataTable" cellspacing="0" role="grid" aria-describedby="dataTable_info"
-            style="width: 100%;">
+          <table class="table table-bordered dataTable" id="dataTable" cellspacing="0" role="grid" aria-describedby="dataTable_info">
 
             <thead>
               <tr role="row">
@@ -24,20 +23,23 @@
                 <th rowspan="1" colspan="1">Data</th>
                 <th rowspan="1" colspan="1">Nome</th>
                 <th rowspan="1" colspan="1">Categoria</th>
+                <th rowspan="1" colspan="1">#</th>
               </tr>
             </thead>
 
             <tbody>
-
               <tr role="row" class="even" *ngFor="let lancamento of lancamentos">
                 <td>{{lancamento.tipo}}</td>
                 <td>{{lancamento.valor | currency: 'BRL'}}</td>
                 <td>{{lancamento.data | date: 'dd/MM/yyyy'}}</td>
                 <td>{{lancamento.nome}}</td>
                 <td>{{lancamento.categoria.nome}}</td>
+                <td>
+                    <i style="cursor: pointer;" class="fas fa-edit" (click)="editar(lancamento);"></i>
+                </td>
               </tr>
-
             </tbody>
+
           </table>
         </div>
       </div>

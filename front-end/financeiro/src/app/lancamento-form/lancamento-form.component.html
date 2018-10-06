@@ -8,24 +8,33 @@
   <div class="form-group">
     <label for="inputNome">Nome</label>
     <input type="text" class="form-control" id="inputNome" formControlName="nome">
+    <div class="alert alert-danger" *ngIf="form.get('nome').invalid && form.get('nome').touched">
+      Campo inválido.
+    </div>
   </div>
 
   <div class="form-group">
     <label for="inputTipo">Tipo</label>
     <select class="form-control" id="inputTipo" formControlName="tipo">
-      <option [value]="'RECEITA'">RECEITA</option>
       <option [value]="'DESPESA'">DESPESA</option>
+      <option [value]="'RECEITA'">RECEITA</option>
     </select>
   </div>
 
   <div class="form-group">
     <label for="inputValor">Valor</label>
     <input type="text" class="form-control" id="inputValor" formControlName="valor">
+    <div class="alert alert-danger" *ngIf="form.get('valor').invalid && form.get('valor').touched">
+      Campo inválido.
+    </div>
   </div>
 
   <div class="form-group">
     <label for="inputData">Data</label>
     <p-calendar [style]="{'width':'100%'}" inputStyleClass="form-control" formControlName="data" dateFormat="dd/mm/yy"></p-calendar>
+    <div class="alert alert-danger" *ngIf="form.get('data').invalid && form.get('data').touched">
+      Campo inválido.
+    </div>
   </div>
 
   <div class="form-group">
@@ -34,7 +43,7 @@
       formControlName="categoria" [suggestions]="listaCategoria" (completeMethod)="buscarCategoria($event)"></p-autoComplete>
   </div>
 
-  <button type="button" class="btn btn-sm btn-primary" (click)="salvar();">
+  <button type="button" class="btn btn-sm btn-primary" (click)="salvar();" [disabled]="form.invalid">
     <i class="fas fa-save"></i> Salvar
   </button>
 

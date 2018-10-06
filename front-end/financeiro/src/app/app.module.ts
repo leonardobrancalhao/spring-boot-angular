@@ -12,6 +12,7 @@ import { LancamentoFormComponent } from './lancamento-form/lancamento-form.compo
 import { LancamentoGridComponent } from './lancamento-grid/lancamento-grid.component';
 import { RotasRoutingModule } from './rotas/rotas-routing.module';
 import { TemplateComponent } from './template/template.component';
+import { CustomFormsModule } from 'ng2-validation';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { TemplateComponent } from './template/template.component';
     FormsModule,
     ReactiveFormsModule,
     AutoCompleteModule,
-    CalendarModule
+    CalendarModule,
+    CustomFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

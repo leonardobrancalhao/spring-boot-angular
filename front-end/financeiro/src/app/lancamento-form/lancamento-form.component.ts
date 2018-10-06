@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CustomValidators } from 'ng2-validation';
 import { Categoria } from '../model/categoria';
-import { Lancamento, TipoLancamento } from '../model/lancamento';
+import { Lancamento } from '../model/lancamento';
 import { CategoriaService } from '../service/categoria.service';
 import { LancamentoService } from '../service/lancamento.service';
 
@@ -13,8 +14,6 @@ import { LancamentoService } from '../service/lancamento.service';
 export class LancamentoFormComponent implements OnInit, OnChanges {
 
   @Input() lancamento: Lancamento = new Lancamento();
-
-  @Input() newPage = false;
 
   // tslint:disable-next-line:no-output-on-prefix
   @Output() onSalvar: EventEmitter<any> = new EventEmitter();
@@ -32,16 +31,18 @@ export class LancamentoFormComponent implements OnInit, OnChanges {
 
     this.form = fb.group({
       id: [''],
-      nome: [''],
-      tipo: [''],
-      valor: [''],
-      data: [''],
+      nome: ['', Validators.required],
+      tipo: ['DESPESA'],
+      valor: ['', [Validators.required, CustomValidators.number]],
+      data: ['', Validators.required],
       categoria: ['']
     });
 
   }
 
   ngOnInit() {
+    this.lancamento.data = new Date();
+    this.form.patchValue(this.lancamento);
   }
 
   ngOnChanges(changes: SimpleChanges) {
