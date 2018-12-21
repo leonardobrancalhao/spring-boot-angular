@@ -33,7 +33,7 @@
                 <td>{{lancamento.valor | currency: 'BRL'}}</td>
                 <td>{{lancamento.data | date: 'dd/MM/yyyy'}}</td>
                 <td>{{lancamento.nome}}</td>
-                <td>{{lancamento.categoria.nome}}</td>
+                <td>{{lancamento?.categoria?.nome}}</td>
                 <td>
                     <i style="cursor: pointer;" class="fas fa-edit" (click)="editar(lancamento);"></i>
                 </td>
@@ -61,7 +61,7 @@
       </div>
 
       <div class="modal-body">
-        <app-lancamento-form (onSalvar)="onSalvarLancamento($event);"></app-lancamento-form>
+        <app-lancamento-form [lancamento]="lancamentoSelecionado" (onSalvar)="onSalvarLancamento($event);"></app-lancamento-form>
       </div>
 
       <div class="modal-footer">

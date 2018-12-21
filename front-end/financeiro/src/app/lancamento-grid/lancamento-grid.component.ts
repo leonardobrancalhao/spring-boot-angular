@@ -12,6 +12,7 @@ declare var $: any;
 export class LancamentoGridComponent implements OnInit {
 
   lancamentos: Array<Lancamento>;
+  lancamentoSelecionado: Lancamento;
 
   constructor(private service: LancamentoService) { }
 
@@ -27,12 +28,18 @@ export class LancamentoGridComponent implements OnInit {
   }
 
   novo() {
+    this.lancamentoSelecionado = new Lancamento();
     $('#modalNovo').modal('show');
   }
 
   onSalvarLancamento(event) {
     $('#modalNovo').modal('hide');
     this.ngOnInit();
+  }
+
+  editar(lancamento) {
+    this.lancamentoSelecionado = lancamento;
+    $('#modalNovo').modal('show');
   }
 
 }

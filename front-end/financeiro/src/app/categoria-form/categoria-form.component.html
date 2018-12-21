@@ -8,6 +8,9 @@
   <div class="form-group">
     <label for="inputNome">Nome</label>
     <input type="text" class="form-control" id="inputNome" formControlName="nome">
+    <div class="alert alert-danger" *ngIf="form.get('nome').invalid && form.get('nome').touched">
+      Campo inválido.
+    </div>
   </div>
 
   <div class="form-group">
@@ -15,11 +18,11 @@
     <input type="text" class="form-control" id="inputDescricao" formControlName="descricao">
   </div>
 
-  <button type="button" class="btn btn-sm btn-primary" (click)="salvar();">
+  <button type="button" class="btn btn-sm btn-primary" (click)="salvar();" [disabled]="form.invalid">
     <i class="fas fa-save"></i> Salvar
   </button>
 
-  <button *ngIf="categoria && categoria.id" type="button" style="float: right;" class="btn btn-sm btn-danger" (click)="remover();">
+  <button *ngIf="categoria && categoria.id" type="button" style="float: right;" class="btn btn-sm btn-danger" (click)="confirmarRemover();">
     <i class="fas fa-trash"></i> Remover
   </button>
 

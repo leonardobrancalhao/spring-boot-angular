@@ -1,3 +1,23 @@
-<router-outlet></router-outlet>
+<p-toast baseZIndex="1100" position="top-center"></p-toast>
 
-<!-- <app-template></app-template> -->
+<p-toast position="center" key="c" (onClose)="onReject()" [modal]="true" [baseZIndex]="5000">
+  <ng-template let-message pTemplate="message">
+    <div style="text-align: center">
+      <div class="col-12">
+        <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i>
+        <h3>{{message.summary}}</h3>
+        <p>{{message.detail}}</p>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <button type="button" (click)="onConfirm()" class="btn btn-sm btn-success">Sim</button>
+        </div>
+        <div class="col-6">
+          <button type="button" (click)="onReject()" class="btn btn-sm btn-secondary">Não</button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</p-toast>
+
+<router-outlet></router-outlet>

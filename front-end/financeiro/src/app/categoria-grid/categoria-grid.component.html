@@ -55,9 +55,7 @@
       </div>
 
       <div class="modal-body">
-        <app-categoria-form [categoria]="categoriaSelecionada"
-          (onSalvar)="onSalvarCategoria($event);"
-          (onRemover)="onRemoverCategoria($event);"></app-categoria-form>
+        <app-categoria-form [categoria]="categoriaSelecionada" (onSalvar)="onSalvarCategoria($event);" (onRemover)="onRemoverCategoria($event);"></app-categoria-form>
       </div>
 
       <div class="modal-footer">

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,19 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  constructor() {
+  static onConfirmar: EventEmitter<any> = new EventEmitter();
+
+  constructor(private mensagem: MessageService) {
+  }
+
+  onReject() {
+    this.mensagem.clear('c');
+    AppComponent.onConfirmar.emit(false);
+  }
+
+  onConfirm() {
+    this.mensagem.clear('c');
+    AppComponent.onConfirmar.emit(true);
   }
 
 }

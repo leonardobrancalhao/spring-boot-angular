@@ -3,8 +3,11 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CustomFormsModule } from 'ng2-validation';
+import { MessageService } from 'primeng/api';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { CalendarModule } from 'primeng/calendar';
+import { ToastModule } from 'primeng/toast';
 import { AppComponent } from './app.component';
 import { CategoriaFormComponent } from './categoria-form/categoria-form.component';
 import { CategoriaGridComponent } from './categoria-grid/categoria-grid.component';
@@ -12,7 +15,6 @@ import { LancamentoFormComponent } from './lancamento-form/lancamento-form.compo
 import { LancamentoGridComponent } from './lancamento-grid/lancamento-grid.component';
 import { RotasRoutingModule } from './rotas/rotas-routing.module';
 import { TemplateComponent } from './template/template.component';
-import { CustomFormsModule } from 'ng2-validation';
 
 @NgModule({
   declarations: [
@@ -32,9 +34,12 @@ import { CustomFormsModule } from 'ng2-validation';
     ReactiveFormsModule,
     AutoCompleteModule,
     CalendarModule,
-    CustomFormsModule
+    CustomFormsModule,
+    ToastModule
   ],
-  providers: [],
+  providers: [
+    MessageService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

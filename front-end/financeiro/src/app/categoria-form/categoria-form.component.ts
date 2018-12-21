@@ -1,7 +1,9 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Categoria } from '../model/categoria';
 import { CategoriaService } from '../service/categoria.service';
+import { MessageService } from 'primeng/api';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-categoria-form',
@@ -22,17 +24,25 @@ export class CategoriaFormComponent implements OnInit, OnChanges {
 
   constructor(
     private fb: FormBuilder,
-    private service: CategoriaService) {
+    private service: CategoriaService,
+    private mensagem: MessageService) {
 
     this.form = fb.group({
       id: [''],
-      nome: [''],
+      nome: ['', Validators.required],
       descricao: ['']
     });
 
   }
 
   ngOnInit() {
+    AppComponent.onConfirmar.subscribe(
+      (responde) => {
+        if (responde) {
+          this.remover();
+        }
+      }
+    );
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -47,25 +57,54 @@ export class CategoriaFormComponent implements OnInit, OnChanges {
 
     this.service.salvar(this.categoria).subscribe(
       () => {
-        console.log('Deu certo');
+        this.mensagem.add({
+          severity: 'success',
+          summary: 'Sucesso',
+          detail: 'Categoria salva com sucesso'
+        });
+
         this.onSalvar.emit();
       },
       (erro) => {
-        console.log('Deu errado', erro);
+        this.mensagem.add({
+          severity: 'error',
+          summary: 'Atenção',
+          detail: 'Não foi possível salvar a categoria'
+        });
       }
     );
   }
 
-  remover() {
+  confirmarRemover() {
+    this.mensagem.clear();
+
+    this.mensagem.add({
+      key: 'c',
+      sticky: true,
+      severity: 'warn',
+      summary: 'Atenção',
+      detail: 'Deseja remover essa categoria?'
+    });
+  }
+
+  private remover() {
     this.categoria = this.form.value;
 
     this.service.remover(this.categoria.id).subscribe(
       () => {
-        console.log('Deu certo');
+        this.mensagem.add({
+          severity: 'success',
+          summary: 'Sucesso',
+          detail: 'Categoria removida'
+        });
         this.onRemover.emit();
       },
       (erro) => {
-        console.log('Deu errado', erro);
+        this.mensagem.add({
+          severity: 'error',
+          summary: 'Atenção',
+          detail: 'Não foi possível remover a categoria'
+        });
       }
     );
   }

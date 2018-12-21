@@ -5,6 +5,8 @@ import { Categoria } from '../model/categoria';
 import { Lancamento } from '../model/lancamento';
 import { CategoriaService } from '../service/categoria.service';
 import { LancamentoService } from '../service/lancamento.service';
+import { FunctionsUtil } from '../util/functions-util';
+
 
 @Component({
   selector: 'app-lancamento-form',
@@ -41,15 +43,22 @@ export class LancamentoFormComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    this.lancamento.data = new Date();
-    this.form.patchValue(this.lancamento);
   }
 
   ngOnChanges(changes: SimpleChanges) {
     this.form.reset();
+
     if (changes.lancamento && this.lancamento) {
+
+      if (!this.lancamento.data) {
+        this.lancamento.data = new Date();
+      } else {
+        this.lancamento.data = FunctionsUtil.getDataFormatada(this.lancamento.data);
+      }
+
       this.form.patchValue(this.lancamento);
     }
+
   }
 
   salvar() {
